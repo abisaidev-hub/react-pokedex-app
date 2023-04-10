@@ -228,16 +228,9 @@ const PokemonDetailed = () => {
       </div>
       <div class="pokedex__footer">
         <ul class="footer__social-media">
-          <li>
-            <a href="https://www.linkedin.com/in/abisaidev" target='_blank' className='footer__link'>
-              <i className='bx bxl-linkedin-square bx-md'></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/abisaidev-hub" target='_blank' className='footer__link'>
-              <i className='bx bxl-github bx-md' ></i>
-            </a>
-          </li>
+          <li><a class="footer__link" href="https://www.linkedin.com/in/abisaidev" target='_blank'>LinkedIn</a></li>
+          <span>|</span>
+          <li><a class="footer__link" href="https://github.com/abisaidev-hub" target='_blank'>GitHub</a></li>
         </ul>
         <p>© Abisai Luna</p>
       </div>
