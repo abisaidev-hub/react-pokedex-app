@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import LoadingData from './LoadingData';
+import pokeball_placeholder from '../images/pokeball_placeholder.png';
 
 const PokemonCard = ({pokemon}) => {
 
@@ -86,12 +88,15 @@ const PokemonCard = ({pokemon}) => {
 
   //  React
   const [ pokemonData, setPokemonData ] = useState([]);
+  const [ isLoadingData, setIsLoadingData ] = useState(false);
   //  React Router DOM
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoadingData(true);
     axios.get(pokemon)
       .then(res => setPokemonData(res.data))
+      .finally(() => setIsLoadingData(false))
   }, [])
 
   const setColor = () => {
@@ -115,21 +120,28 @@ const PokemonCard = ({pokemon}) => {
         <div className="p-c-bg">
 
         </div>
-        <img src={pokemonData.sprites?.front_default} alt="" />
+        <img src={pokemonData.sprites?.front_default}/>
         <div className="card-details">
           <div className="p-name">
-            <p><b>{pokemonName}</b></p>
+            {isLoadingData ? (<LoadingData/>) :
+              (<p><b>{pokemonName}</b></p>)
+            }
           </div>
           <div className="t-details">
-            <p><b>Type</b>: {pokemonData.types?.[1] ? `${firstTypeFixed} | ${secondTypeFixed}` : firstTypeFixed}</p>
+            {isLoadingData ? (<LoadingData/>) :
+              (<p><b>Type</b>: {pokemonData.types?.[1] ? `${firstTypeFixed} | ${secondTypeFixed}` : firstTypeFixed}</p>)}
           </div>
           <div className="f-details">
-            <div>
-              <p><b>Attack</b>: {pokemonData.stats?.[1].base_stat}</p>
-            </div>
-            <div>
-              <p><b>Defense</b>: {pokemonData.stats?.[2].base_stat}</p>
-            </div>
+            {isLoadingData ? (<LoadingData/>) :
+              (<>
+                <div>
+                  <p><b>Attack</b>: {pokemonData.stats?.[1].base_stat}</p>
+                </div>
+                <div>
+                  <p><b>Defense</b>: {pokemonData.stats?.[2].base_stat}</p>
+                </div>
+              </>)
+            }
           </div>
         </div>
       </li>

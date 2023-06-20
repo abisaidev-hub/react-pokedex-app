@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 import pokedexicon from '../images/pokedexicon.png';
+import LoadingData from './LoadingData';
+import pokeball_placeholder from '../images/pokeball_placeholder.png';
 
 const PokemonDetailed = () => {
 
@@ -88,16 +90,19 @@ const PokemonDetailed = () => {
   //  React
   const [ pokemonDetails, setPokemonDetails ] = useState([]);
   const [ moves, setMoves ] = useState([]);
+  const [ isLoadingData, setIsLoadingData ] = useState(false);
   //  React Router DOM
   const { pokeId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoadingData(true);
     axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
       .then(res => {
         setPokemonDetails(res.data)
         setMoves(res.data.moves)
       })
+      .finally(() => setIsLoadingData(false))
   }, [])
 
   const setColor = () => {
@@ -128,85 +133,145 @@ const PokemonDetailed = () => {
           <i className='bx bxs-chevron-left bx-xs' ></i>
         </button>
         <div className="pokemon-details-card" style={{backgroundColor: setColor()}}>
-          <img src={pokemonDetails.sprites?.other.home.front_default} alt="pokemon" />
+          {isLoadingData ? (<img src={pokeball_placeholder} className='pokeball-spinning'/>) :
+            (<img src={pokemonDetails.sprites?.other.home.front_default}/>)
+          }
           <div className="p-d-info">
             <div className="p-d-pname">
-              <p><b>{pokemonName}</b></p>
+              {isLoadingData ? (<LoadingData />) :
+                (<p><b>{pokemonName}</b></p>)
+              }
             </div>
             <div className="p-d-type">
               <div className="p-d-type-title">
-                <p><b>Type</b></p>
+                {isLoadingData ? (<LoadingData />) :
+                  (<p><b>Type</b></p>)
+                }
               </div>
               <div className="p-d-type-info">
-                <p>{pokemonDetails.types?.[1] ? `${firstTypeFixed} | ${secondTypeFixed}` : firstTypeFixed}</p>
+                {isLoadingData ? (<LoadingData />) :
+                  (<p>{pokemonDetails.types?.[1] ? `${firstTypeFixed} | ${secondTypeFixed}` : firstTypeFixed}</p>)
+                }
               </div>
             </div>
             <div className="p-d-hnw">
-              <div className="p-d-height">
-                <p><b>Height</b></p>
-                <p>{pHeight} m</p>
+              <div className="p-d-hnw-title">
+              {isLoadingData ? (<LoadingData />) :
+                (
+                  <>
+                    <p><b>Height</b></p>
+                    <p><b>Weight</b></p>
+                  </>
+                )
+              }
               </div>
-              <div className="p-d-weight">
-                <p><b>Weight</b></p>
-                <p>{pWeight} kg</p>
+              <div className="p-d-hnw-description">
+                {isLoadingData ? (<LoadingData />) :
+                  (
+                    <>
+                      <p>{pHeight} m</p>
+                      <p>{pWeight} kg</p>
+                    </>
+                  )
+                }
               </div>
             </div>
             <div className="p-d-stats-container">
               <div className="p-d-stats-title">
-                <p><b>Stats</b></p>
+                {isLoadingData ? (<LoadingData />) :
+                  (<p><b>Stats</b></p>)
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>HP</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[0].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[0].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />) :
+                  (
+                    <>                    
+                      <p>HP</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[0].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[0].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>Attack</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[1].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[1].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />):
+                  (
+                    <>                    
+                      <p>Attack</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[1].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[1].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>Defense</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[2].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[2].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />):
+                  (
+                    <>                    
+                      <p>Defense</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[2].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[2].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>Speed</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[3].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[3].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />):
+                  (
+                    <>                    
+                      <p>Speed</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[3].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[3].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
             </div>
             <div className="p-d-extra-stats-container">
               <div className="p-d-stats-title">
-                <p><b>Extra stats</b></p>
+                {isLoadingData ? (<LoadingData />):
+                  (<p><b>Extra stats</b></p>)
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>Special attack</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[4].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[4].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />):
+                  (
+                    <>                    
+                      <p>Special attack</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[4].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[4].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
               <div className="p-d-stat-container">
-                <p>Special defense</p>
-                <div className="p-d-stat-bar">
-                  <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[5].base_stat}px`}}>
-                    <p>{`${pokemonDetails.stats?.[5].base_stat}/150`}</p>
-                  </div>
-                </div>
+                {isLoadingData ? (<LoadingData />):
+                  (
+                    <>                    
+                      <p>Special defense</p>
+                      <div className="p-d-stat-bar">
+                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[5].base_stat}px`}}>
+                          <p>{`${pokemonDetails.stats?.[5].base_stat}/150`}</p>
+                        </div>
+                      </div>
+                    </>
+                  )
+                }
               </div>
             </div>
           </div>
@@ -214,23 +279,58 @@ const PokemonDetailed = () => {
         <div className="p-d-moves-card">
           <div className="p-d-moves-container">
             <div className="p-d-moves-title">
-              <p><b>Moves</b></p>
+              {isLoadingData ? (<LoadingData />) :
+                (<p><b>Moves</b></p>)
+              }
             </div>
-            <ul className='p-d-moves-ul'>
-              {moves.map(move => (
-                <li key={move.move.name}>
-                  <p>{(move.move.name)[0].toUpperCase()+(move.move.name).substring(1).replace('-', ' ')}</p>
-                </li>
-              ))}
-            </ul>
+            {isLoadingData ?
+              (
+                <ul className='p-d-moves-ul ul-loading'>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                  <li><LoadingData /></li>
+                </ul>
+              )
+              :
+              (
+                <ul className='p-d-moves-ul'>
+                  {moves.map(move => (
+                    <li key={move.move.name}>
+                      <p>{(move.move.name)[0].toUpperCase()+(move.move.name).substring(1).replace('-', ' ')}</p>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
           </div>
         </div>
       </div>
-      <div class="pokedex__footer">
-        <ul class="footer__social-media">
-          <li><a class="footer__link" href="https://www.linkedin.com/in/abisaidev" target='_blank'>LinkedIn</a></li>
+      <div className="pokedex__footer">
+        <ul className="footer__social-media">
+          <li><a className="footer__link" href="https://www.linkedin.com/in/abisaidev" target='_blank'>LinkedIn</a></li>
           <span>|</span>
-          <li><a class="footer__link" href="https://github.com/abisaidev-hub" target='_blank'>GitHub</a></li>
+          <li><a className="footer__link" href="https://github.com/abisaidev-hub" target='_blank'>GitHub</a></li>
         </ul>
         <p>© Abisai Luna</p>
       </div>

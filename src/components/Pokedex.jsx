@@ -142,11 +142,11 @@ const Pokedex = () => {
         {paginationButtons()}
       </div>
 
-      <div class="pokedex__footer">
-        <ul class="footer__social-media">
-          <li><a class="footer__link" href="https://www.linkedin.com/in/abisaidev" target='_blank'>LinkedIn</a></li>
+      <div className="pokedex__footer">
+        <ul className="footer__social-media">
+          <li><a className="footer__link" href="https://www.linkedin.com/in/abisaidev" target='_blank'>LinkedIn</a></li>
           <span>|</span>
-          <li><a class="footer__link" href="https://github.com/abisaidev-hub" target='_blank'>GitHub</a></li>
+          <li><a className="footer__link" href="https://github.com/abisaidev-hub" target='_blank'>GitHub</a></li>
         </ul>
         <p>© Abisai Luna</p>
       </div>
