@@ -37,38 +37,50 @@ body{
 }
 
 .login-container form input{
-  padding: 2px 4px;
+  outline: 2px solid gray;
+  padding: 0.5rem 0.75rem;
+  height: 35px;
   border-radius: 6px 0 0 6px;
   border: none;
   background-color: rgb(230, 230, 230);
-  transition: 0.2s;
-}
-
-.login-container form input:hover{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.login-container form input:focus{
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
 }
 
 .login-container form button{
   border-radius: 0 6px 6px 0;
   border: none;
-  height: 23px;
-  width: 25px;
-  background-color: rgb(218, 0, 0);
-  transition: 0.2s;
+  height: 35px;
+  width: 35px;
+  background-color: gray;
+  outline: 2px solid gray;
+  transition: 0.5s;
 }
 
-.login-container form button:hover{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+.login-container form input:hover,
+.login-container form input:hover ~ button,
+.login-container form input:focus,
+.login-container form input:focus ~ button{
+  outline: 2px solid red;
+}
+
+.login-container .active-login-button{
+  outline: 2px solid red;
+  background-color: red;
   cursor: pointer;
+}
+
+.login-container .active-login-input{
+  outline: 2px solid red;
+}
+
+.active-login-button:hover .bx,
+.active-login-button:focus .bx{
+  transform: scale(1.5);
 }
 
 .login-container form button i{
   color: white;
+  transition: 0.2s;
 }
 
 .login__footer{
@@ -132,7 +144,9 @@ body{
 }
 
 .pokedex-menu form input{
-  padding: 2px 4px;
+  outline: 2px solid rgb(77, 165, 136);
+  padding: 0.5rem 0.75rem;
+  height: 35px;
   border-radius: 6px 0 0 6px;
   border: none;
   background-color: aquamarine;
@@ -140,51 +154,42 @@ body{
   transition: 0.2s;
 }
 
-.pokedex-menu form input:hover{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.pokedex-menu form input:focus{
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
 .pokedex-menu form button{
   border-radius: 0 6px 6px 0;
   border: none;
-  height: 23px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   background-color: rgb(77, 165, 136);
+  outline: 2px solid rgb(77, 165, 136);
   cursor: pointer;
   transition: 0.2s;
 }
 
-.pokedex-menu form button:hover{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+.pokedex-menu form button:hover .bx,
+.pokedex-menu form button:focus .bx{
+  transform: scale(1.5);
 }
 
 .pokedex-menu form button i{
   color: white;
+  transition: 0.2s;
 }
 
 .pokedex-menu select{
   border-radius: 6px;
+  padding: 0.5rem 0.75rem;
   background-color: aquamarine;
+  outline: 2px solid rgb(77, 165, 136);
   border: none;
   margin-bottom: 3px;
-  height: 22px;
   transition: 0.2s;
   cursor: pointer;
 }
 
-.pokedex-menu select:hover,
-.pokedex-menu select:focus{
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
 .select-container{
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
 }
 
@@ -362,6 +367,10 @@ body{
   font-size: 12px;
 }
 
+.t-details .p-d-type-details{
+  margin: 0 0.1rem;
+}
+
 /* Pokemon Details */
 
 .pokemon-details-container{
@@ -458,6 +467,13 @@ body{
 .p-d-pname,
 .p-d-type{
   text-align: center;
+}
+
+.p-d-type-details{
+  margin: 0 0.25rem;
+  border-radius: 0.25rem;
+  color: white;
+  padding: 0 0.25rem;
 }
 
 .p-d-hnw{

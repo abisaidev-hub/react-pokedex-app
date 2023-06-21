@@ -113,12 +113,20 @@ const PokemonDetailed = () => {
     }
   };
 
+  const setSecondColor = () => {
+    for(let i in colors){
+      if(colors[i].id === pokemonDetails.types?.[1].type.name){
+        return colors[i].color
+      }
+    }
+  };
+
   //  Javascript
   const pokemonName = pokemonDetails.name?.[0].toUpperCase() + pokemonDetails.name?.substring(1)
   const firstType = pokemonDetails.types?.[0]?.type?.name
   const secondType = pokemonDetails.types?.[1]?.type?.name
-  const firstTypeFixed = firstType?.[0].toUpperCase() + firstType?.substring(1)
-  const secondTypeFixed = secondType?.[0].toUpperCase() + secondType?.substring(1)
+  const firstTypeFixed = firstType?.toUpperCase()
+  const secondTypeFixed = secondType?.toUpperCase()
   const pHeight = (pokemonDetails.height / 10)
   const pWeight = (pokemonDetails.weight / 10)
 
@@ -150,7 +158,9 @@ const PokemonDetailed = () => {
               </div>
               <div className="p-d-type-info">
                 {isLoadingData ? (<LoadingData />) :
-                  (<p>{pokemonDetails.types?.[1] ? `${firstTypeFixed} | ${secondTypeFixed}` : firstTypeFixed}</p>)
+                  (
+                    <p>{pokemonDetails.types?.[1] ? <><span className='p-d-type-details' style={{backgroundColor: setColor()}}>{firstTypeFixed}</span> <span className='p-d-type-details' style={{backgroundColor: setSecondColor()}}>{secondTypeFixed}</span></> : <span className='p-d-type-details' style={{backgroundColor: setColor()}}>{firstTypeFixed}</span>}</p>
+                  )
                 }
               </div>
             </div>

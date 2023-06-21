@@ -13,6 +13,20 @@ const Login = () => {
   //  Redux
   const dispatch = useDispatch();
 
+  const handleInput = () => {
+    if (userInput.trim().length > 0) {
+      document.getElementById('login-button')?.classList.add('active-login-button');
+      document.getElementById('login-button')?.removeAttribute('disabled');
+      document.getElementById('login-input')?.classList.add('active-login-input');
+    } else {
+      document.getElementById('login-button')?.classList.remove('active-login-button');
+      document.getElementById('login-button')?.setAttribute('disabled', false);
+      document.getElementById('login-input')?.classList.remove('active-login-input');
+    }
+  };
+
+  handleInput();
+
   const submitForm = (e) => {
     e.preventDefault();
     dispatch(updateUser(userInput.trim()))
@@ -27,11 +41,12 @@ const Login = () => {
       <form onSubmit={submitForm}>
         <input
           type="text"
-          placeholder=''
+          placeholder='John Doe'
           onChange={(e) => setUserInput(e.target.value)}
           value={userInput}
+          id='login-input'
         />
-        <button>
+        <button id='login-button'>
           <i className='bx bxs-right-arrow' ></i>
         </button>
       </form>
