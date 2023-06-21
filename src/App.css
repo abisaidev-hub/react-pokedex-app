@@ -37,22 +37,23 @@ body{
 }
 
 .login-container form input{
-  outline: 2px solid gray;
   padding: 0.5rem 0.75rem;
   height: 35px;
   border-radius: 6px 0 0 6px;
-  border: none;
+  border: 2px solid gray;
+  border-right: none;
   background-color: rgb(230, 230, 230);
   transition: 0.5s;
 }
 
 .login-container form button{
   border-radius: 0 6px 6px 0;
+  outline: none;
   border: none;
   height: 35px;
   width: 35px;
   background-color: gray;
-  outline: 2px solid gray;
+  border: 2px solid gray;
   transition: 0.5s;
 }
 
@@ -60,17 +61,25 @@ body{
 .login-container form input:hover ~ button,
 .login-container form input:focus,
 .login-container form input:focus ~ button{
-  outline: 2px solid red;
+  border: 2px solid red;
+  outline: none;
+}
+
+.login-container form input:hover,
+.login-container form input:focus{
+  border-right: none;
 }
 
 .login-container .active-login-button{
-  outline: 2px solid red;
+  border: 2px solid red;
   background-color: red;
+  outline: none;
   cursor: pointer;
 }
 
 .login-container .active-login-input{
-  outline: 2px solid red;
+  border: 2px solid red;
+  border-right: none;
 }
 
 .active-login-button:hover .bx,
