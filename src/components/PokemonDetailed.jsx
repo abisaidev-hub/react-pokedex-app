@@ -96,12 +96,14 @@ const PokemonDetailed = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setIsLoadingData(true);
     axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
       .then(res => {
         setPokemonDetails(res.data)
         setMoves(res.data.moves)
       })
+      .catch(() => navigate('/pokedex/notfound'))
       .finally(() => setIsLoadingData(false))
   }, [])
 

@@ -596,6 +596,16 @@ body{
   padding: 0;
 }
 
+.not-found-card{
+  min-height: 80vh;
+  justify-content: center;
+  margin: 0;
+}
+
+.not-found-card h2{
+  color: white;
+}
+
 /* Desktop */
 
 @media screen and ( min-width: 992px ){

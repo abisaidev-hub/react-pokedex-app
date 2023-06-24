@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Pokedex from './components/Pokedex'
 import PokemonDetailed from './components/PokemonDetailed'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import NotFound from './components/NotFound'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />}/>
           <Route element={<ProtectedRoutes/>}>
+            <Route path='/pokedex/notfound' element={<NotFound />}/>
             <Route path='/pokedex' element={<Pokedex />}/>
             <Route path='/pokedex/:pokeId' element={<PokemonDetailed />}/>
           </Route>
