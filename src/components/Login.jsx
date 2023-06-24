@@ -46,7 +46,7 @@ const Login = () => {
           value={userInput}
           id='login-input'
         />
-        <button id='login-button'>
+        <button id='login-button' disabled>
           <i className='bx bxs-right-arrow' ></i>
         </button>
       </form>
