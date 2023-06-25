@@ -123,6 +123,11 @@ const PokemonDetailed = () => {
     }
   };
 
+  const barWidthFixed = (value, max) => {
+    const percentage = (value * 100)/max;
+    return percentage;
+  };
+
   //  Javascript
   const pokemonName = pokemonDetails.name?.[0].toUpperCase() + pokemonDetails.name?.substring(1)
   const firstType = pokemonDetails.types?.[0]?.type?.name
@@ -200,8 +205,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>HP</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[0].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[0].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[0].base_stat, 255)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[0].base_stat} / 255`}</p>
                         </div>
                       </div>
                     </>
@@ -214,8 +219,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>Attack</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[1].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[1].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[1].base_stat, 190)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[1].base_stat} / 190`}</p>
                         </div>
                       </div>
                     </>
@@ -228,8 +233,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>Defense</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[2].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[2].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[2].base_stat, 250)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[2].base_stat} / 250`}</p>
                         </div>
                       </div>
                     </>
@@ -242,8 +247,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>Speed</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[3].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[3].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[3].base_stat, 200)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[3].base_stat} / 200`}</p>
                         </div>
                       </div>
                     </>
@@ -263,8 +268,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>Special attack</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[4].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[4].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[4].base_stat, 194)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[4].base_stat} / 194`}</p>
                         </div>
                       </div>
                     </>
@@ -277,8 +282,8 @@ const PokemonDetailed = () => {
                     <>                    
                       <p>Special defense</p>
                       <div className="p-d-stat-bar">
-                        <div className="p-d-stat-bar-filled" style={{width: `${pokemonDetails.stats?.[5].base_stat}px`}}>
-                          <p>{`${pokemonDetails.stats?.[5].base_stat}/150`}</p>
+                        <div className="p-d-stat-bar-filled" style={{width: `${barWidthFixed(pokemonDetails.stats?.[5].base_stat, 250)}%`}}>
+                          <p>{`${pokemonDetails.stats?.[5].base_stat} / 250`}</p>
                         </div>
                       </div>
                     </>

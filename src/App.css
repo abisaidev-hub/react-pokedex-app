@@ -527,15 +527,18 @@ body{
   height: 1rem;
   border-radius: 5px;
   display: flex;
+  position: relative;
 }
 
 .p-d-stat-bar p{
   font-size: 12px;
   color: white;
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
 }
 
 .p-d-stat-bar-filled{
@@ -621,6 +624,7 @@ body{
   }
 
   .pokemons-list{
+    gap: 1rem;
     max-width: 950px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -711,19 +715,22 @@ body{
     font-size: 1.5rem;
   }
 
+  .pokedex-menu form{
+    display: flex;
+  }
+
   .pokedex-menu form input{
-    padding: 5px 10px;
+    height: 45px;
     width: 300px;
     font-size: 1.2rem;
   }
 
   .pokedex-menu form button{
-    height: 37px;
-    width: 37px;
+    height: 45px;
+    width: 45px;
   }
 
   .pokedex-menu select{
-    height: 32px;
     font-size: 1.2rem;
   }
 
